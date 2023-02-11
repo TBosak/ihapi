@@ -1,12 +1,10 @@
 const express = require('express');
 const Jimp = require('jimp');
-const bodyParser = require('body-parser')
 
 const app = express();
-var jsonParser = bodyParser.json()
 const port = 3000;
 
-app.post('/', jsonParser, (req, res) =>{
+app.post('/', express.json(), (req, res) =>{
     var data = req.body;
     Jimp.read(data.image,
     (err, img) => {
@@ -32,3 +30,4 @@ app.post('/', jsonParser, (req, res) =>{
     });
 });
 app.listen(port, () => console.log(`IHapi Listening on port ${port}!`))
+module.exports = app;
